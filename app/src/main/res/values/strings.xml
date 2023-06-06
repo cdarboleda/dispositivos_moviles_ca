@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">DispositivosMoviles</string>
+    <string name="hello_world_eng">Hello world!</string>
+    <string name="hello_world_esp">Hola mundo!</string>
+    <string name="app_name_menu">Pedidos Online</string>
+    <string name="app_welcome_menu">¡Hola! Es bueno verte nuevamente</string>
+    <string name="login_alt_menu">O conéctese usando las redes sociales</string>
+</resources>
