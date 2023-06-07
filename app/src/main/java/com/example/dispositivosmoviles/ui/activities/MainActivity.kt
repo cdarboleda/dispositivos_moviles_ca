@@ -55,7 +55,6 @@ class MainActivity : AppCompatActivity() {
                 var snackbar = Snackbar.make(binding.txtTitle,
                     "Usuario o contraseña inválidos",
                     Snackbar.LENGTH_LONG)
-
                 snackbar.setBackgroundTint(ContextCompat.getColor(binding.root.context, R.color.principal_color_dm))
 
                 snackbar.show()
