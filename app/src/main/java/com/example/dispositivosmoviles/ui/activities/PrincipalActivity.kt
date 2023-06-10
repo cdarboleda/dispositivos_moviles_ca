@@ -8,6 +8,7 @@ import androidx.core.content.ContextCompat
 import com.example.dispositivosmoviles.R
 
 import com.example.dispositivosmoviles.databinding.ActivityPrincipalBinding
+import com.example.dispositivosmoviles.ui.fragments.FirstFragment
 import com.google.android.material.snackbar.Snackbar
 
 class PrincipalActivity : AppCompatActivity() {
@@ -42,18 +43,11 @@ class PrincipalActivity : AppCompatActivity() {
         binding.bottomNavigation.setOnItemSelectedListener { item ->
             when (item.itemId) {
                 R.id.menu_item_wifi -> {
-                    var suma :Int = 0
-                    for (i in 1..10){
-                        suma = suma+i;
-                    }
-                    // Respond to navigation item 1 click
-                    var s = Snackbar.make(binding.txtTitle,
-                        "La suma es ${suma}",
-                        Snackbar.LENGTH_LONG)
-
-                    s.setBackgroundTint(ContextCompat.getColor(binding.root.context, R.color.principal_color_dm))
-
-                       s.show()
+                    var frag = FirstFragment();
+                    val transaction = supportFragmentManager.beginTransaction();
+                    transaction.add(binding.frmContainter.id, frag);
+                    transaction.addToBackStack(null);
+                    transaction.commit();
                     true
                 }
 
