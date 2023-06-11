@@ -36,7 +36,7 @@
             android:layout_marginBottom="30dp"
             android:fontFamily="@font/satisfy"
             android:gravity="center_horizontal"
-            android:text="My primer Fragment"
+            android:text="My first Fragment"
             android:textColor="@color/purple"
             android:textSize="42sp"
             android:textStyle="bold" />

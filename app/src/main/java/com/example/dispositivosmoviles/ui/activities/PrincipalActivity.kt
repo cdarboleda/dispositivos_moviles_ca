@@ -9,6 +9,7 @@ import com.example.dispositivosmoviles.R
 
 import com.example.dispositivosmoviles.databinding.ActivityPrincipalBinding
 import com.example.dispositivosmoviles.ui.fragments.FirstFragment
+import com.example.dispositivosmoviles.ui.fragments.SecondFragment
 import com.google.android.material.snackbar.Snackbar
 
 class PrincipalActivity : AppCompatActivity() {
@@ -51,7 +52,7 @@ class PrincipalActivity : AppCompatActivity() {
                     true
                 }
 
-                R.id.menu_item_bluetooth -> {
+/*                R.id.menu_item_bluetooth -> {
                     // Respond to navigation item 2 click
                     var suma : Int = 0;
                     for (i in listOf(8,12,13)){
@@ -62,8 +63,15 @@ class PrincipalActivity : AppCompatActivity() {
                         Snackbar.LENGTH_LONG)
 
                     s.setBackgroundTint(ContextCompat.getColor(binding.root.context, R.color.principal_color_dm))
-
                     s.show()
+                    true
+                }*/
+                R.id.menu_item_bluetooth -> {
+                    var fraq = SecondFragment();
+                    val transaction = supportFragmentManager.beginTransaction();
+                    transaction.add(binding.frmContainter2.id,fraq);
+                    transaction.addToBackStack(null);
+                    transaction.commit()
                     true
                 }
                 R.id.menu_item_settings -> {
