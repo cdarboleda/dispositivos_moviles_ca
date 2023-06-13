@@ -5,6 +5,13 @@
         <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
     </style>
 
+    <style name="ActiveIndicator" parent="Widget.Material3.BottomNavigationView.ActiveIndicator">
+
+        <item name="android:color">@color/principal_color_dm</item>
+
+    </style>
+
+
     <style name="Theme.DispositivosMoviles" parent="Base.Theme.DispositivosMoviles">
 
         <item name="android:fontFamily"> @font/roboto </item>

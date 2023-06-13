@@ -4,13 +4,14 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
-import androidx.core.content.ContextCompat
 import com.example.dispositivosmoviles.R
-
 import com.example.dispositivosmoviles.databinding.ActivityPrincipalBinding
+
+
 import com.example.dispositivosmoviles.ui.fragments.FirstFragment
 import com.example.dispositivosmoviles.ui.fragments.SecondFragment
-import com.google.android.material.snackbar.Snackbar
+import com.example.dispositivosmoviles.ui.fragments.ThirdFragment
+import com.example.dispositivosmoviles.ui.utilities.FragmentsManager
 
 class PrincipalActivity : AppCompatActivity() {
 
@@ -44,11 +45,11 @@ class PrincipalActivity : AppCompatActivity() {
         binding.bottomNavigation.setOnItemSelectedListener { item ->
             when (item.itemId) {
                 R.id.menu_item_wifi -> {
-                    var frag = FirstFragment();
-                    val transaction = supportFragmentManager.beginTransaction();
-                    transaction.add(binding.frmContainter.id, frag);
-                    transaction.addToBackStack(null);
-                    transaction.commit();
+                    FragmentsManager().replaceFragment(
+                        supportFragmentManager,
+                        binding.frmContainter.id,
+                        FirstFragment()
+                    )
                     true
                 }
 
@@ -67,15 +68,20 @@ class PrincipalActivity : AppCompatActivity() {
                     true
                 }*/
                 R.id.menu_item_bluetooth -> {
-                    var fraq = SecondFragment();
-                    val transaction = supportFragmentManager.beginTransaction();
-                    transaction.add(binding.frmContainter2.id,fraq);
-                    transaction.addToBackStack(null);
-                    transaction.commit()
+                    FragmentsManager().replaceFragment(
+                        supportFragmentManager,
+                        binding.frmContainter2.id,
+                        SecondFragment()
+                    )
                     true
                 }
                 R.id.menu_item_settings -> {
                     // Respond to navigation item 2 click
+                    FragmentsManager().replaceFragment(
+                        supportFragmentManager,
+                        binding.frmContainter3.id,
+                        ThirdFragment()
+                    )
                     true
                 }
 
@@ -84,6 +90,8 @@ class PrincipalActivity : AppCompatActivity() {
         }
 
     }
+    override fun onBackPressed(){
 
+    }
 
 }
