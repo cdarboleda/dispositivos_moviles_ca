@@ -24,7 +24,7 @@ class MarvelAdapter(
             item: MarvelChars,
             fnClick: (MarvelChars) -> Unit
         ) {
-            binding.marvelTitle.text = item.name;
+            binding.txtName.text = item.name;
             binding.txtComic.text = item.comic;
             Picasso.get().load(item.image).into(binding.imgMarvel)
 

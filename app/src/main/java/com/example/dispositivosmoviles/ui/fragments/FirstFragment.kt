@@ -5,19 +5,19 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Adapter
 import android.widget.ArrayAdapter
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import com.example.dispositivosmoviles.R
 import com.example.dispositivosmoviles.data.entities.marvel.MarvelChars
-
 import com.example.dispositivosmoviles.databinding.FragmentFirstBinding
-import com.example.dispositivosmoviles.logic.lists.ListItems
+import com.example.dispositivosmoviles.logic.jikanLogic.JikanAnimeLogic
 import com.example.dispositivosmoviles.ui.activities.DetailsMarvelItem
-import com.example.dispositivosmoviles.ui.activities.MainActivity
 import com.example.dispositivosmoviles.ui.adapters.MarvelAdapter
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 /**
  * A simple [Fragment] subclass.
@@ -26,7 +26,7 @@ import com.example.dispositivosmoviles.ui.adapters.MarvelAdapter
  */
 class FirstFragment : Fragment() {
 
-    private lateinit var  binding: FragmentFirstBinding;
+    private lateinit var binding: FragmentFirstBinding;
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -59,29 +59,48 @@ class FirstFragment : Fragment() {
         }
 
 
-
     }
 
-    fun sendMarvelItem(item: MarvelChars){
+    fun sendMarvelItem(item: MarvelChars) {
         val i = Intent(requireActivity(), DetailsMarvelItem::class.java)
         i.putExtra("name", item)
         startActivity(i)
     }
 
-    fun chargeDataRV(){
-        val rvAdapter = MarvelAdapter(
-            ListItems().returnMarvelChars()
-        ) {sendMarvelItem(it)}
+    /*    fun chargeDataRV(){
+            val rvAdapter = MarvelAdapter(
+                ListItems().returnMarvelChars()
+            ) {sendMarvelItem(it)}
 
-        val rvMarvel = binding.rvMarvelChars
+            val rvMarvel = binding.rvMarvelChars
 
-        with(rvMarvel){
-            this.adapter = rvAdapter;
-            this.layoutManager = LinearLayoutManager(
-                    requireActivity(),
-                    LinearLayoutManager.VERTICAL,
-                    false
-                )
+            with(rvMarvel){
+                this.adapter = rvAdapter;
+                this.layoutManager = LinearLayoutManager(
+                        requireActivity(),
+                        LinearLayoutManager.VERTICAL,
+                        false
+                    )
+            }
+        }*/
+
+    fun chargeDataRV() {
+        lifecycleScope.launch(Dispatchers.IO) {
+            val rvAdapter = MarvelAdapter(
+                JikanAnimeLogic().getAllAnimes()
+            ) { sendMarvelItem(it) }
+            withContext(Dispatchers.Main) {
+                with(binding.rvMarvelChars) {
+                    this.adapter = rvAdapter;
+                    this.layoutManager = LinearLayoutManager(
+                        requireActivity(),
+                        LinearLayoutManager.VERTICAL,
+                        false
+                    )
+                }
+            }
         }
+
+
     }
 }
