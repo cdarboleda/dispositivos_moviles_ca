@@ -5,18 +5,6 @@ import com.example.dispositivosmoviles.data.entities.marvel.MarvelChars
 
 class ListItems {
 
-    fun returnItems(): List<LoginUser> {
-        var items = listOf<LoginUser>(
-            LoginUser("1", "1"),
-            LoginUser("2", "1"),
-            LoginUser("3", "1"),
-            LoginUser("4", "1"),
-            LoginUser("5", "1")
-
-        )
-
-        return items
-    }
 
     fun returnMarvelChars(): List<MarvelChars> {
         val items = listOf(

@@ -4,6 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_margin="14dp"
+    android:background="@drawable/background_marvel2"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".ui.fragments.FirstFragment">
 
@@ -12,7 +13,7 @@
         android:layout_width="249dp"
         android:layout_height="252dp"
         android:layout_margin="35dp"
-        android:backgroundTint="@color/cardview_dark_background"
+        android:backgroundTint="@color/redmarvel"
         android:elevation="10dp"
         app:cardCornerRadius="12dp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -21,33 +22,35 @@
 
 
         <ImageView
-            android:layout_width="235dp"
-            android:layout_height="150dp"
+            android:layout_width="212dp"
+            android:layout_height="116dp"
+            android:layout_marginTop="20dp"
             android:layout_gravity="center_horizontal"
-            android:src="@drawable/shat" />
+            android:src="@drawable/marvellog" />
 
-        <TextView
+        <!--<TextView
             android:layout_width="220dp"
-            android:layout_height="137dp"
+            android:layout_height="59dp"
             android:layout_gravity="center_horizontal|center_vertical"
             android:layout_marginTop="100dp"
             android:layout_marginBottom="30dp"
             android:fontFamily="@font/satisfy"
             android:gravity="center_horizontal"
-            android:text="My first Fragment"
+            android:text="MARVEL"
             android:textColor="@color/purple"
-            android:textSize="42sp"
-            android:textStyle="bold" />
+            android:textSize="35sp"
+            android:textStyle="bold" />-->
+
+        <ImageView
+            android:layout_width="150dp"
+            android:layout_height="90dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_margin="150dp"
+            android:src="@drawable/deadpooldance" />
+
+
     </androidx.cardview.widget.CardView>
 
-    <Spinner
-        android:id="@+id/spinner"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="25dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/cardView" />
 
     <LinearLayout
         android:layout_width="321dp"
@@ -58,14 +61,21 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/spinner">
+        app:layout_constraintTop_toBottomOf="@id/cardView">
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rvMarvelChars"
-            android:layout_width="327dp"
-            android:layout_height="307dp"
-            tools:layout_editor_absoluteX="24dp"
-            tools:layout_editor_absoluteY="376dp" />
+        <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+            android:id = "@+id/rvSwipe"
+            android:layout_width = "match_parent"
+            android:layout_height="match_parent">
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rvMarvelChars"
+                android:layout_width="327dp"
+                android:layout_height="307dp"
+                tools:layout_editor_absoluteX="24dp"
+                tools:layout_editor_absoluteY="376dp" />
+
+        </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
     </LinearLayout>
 

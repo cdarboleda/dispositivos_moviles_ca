@@ -7,7 +7,7 @@
 
     <style name="ActiveIndicator" parent="Widget.Material3.BottomNavigationView.ActiveIndicator">
 
-        <item name="android:color">@color/principal_color_dm</item>
+        <item name="android:color">@color/title_color_dm</item>
 
     </style>
 
@@ -15,7 +15,6 @@
     <style name="Theme.DispositivosMoviles" parent="Base.Theme.DispositivosMoviles">
 
         <item name="android:fontFamily"> @font/roboto </item>
-        <item name="android:backgroundTint"> @color/background_dm </item>
         <item name="android:textColor"> @color/font_color_dm </item>
         <item name="android:textSize"> 14sp </item>
 
@@ -23,7 +22,7 @@
 
     <style name="textTitle">
         <item name="android:fontFamily"> @font/roboto </item>
-        <item name="android:textColor"> @color/title_color_dm </item>
+        <item name="android:textColor">@color/purple</item>
         <item name="android:textStyle"> bold </item>
         <item name="android:textSize"> 30sp </item>
 
@@ -34,7 +33,7 @@
         <item name="android:textStyle"> bold </item>
         <item name="android:textSize"> 12sp </item>
         <item name="android:textColor"> @color/white </item>
-        <item name  ="android:backgroundTint"> @color/principal_color_dm </item>
+        <item name  ="android:backgroundTint"> @color/title_color_dm </item>
         <item name="cornerRadius">8dp</item>
     </style>
 
@@ -64,5 +63,7 @@
         <item name="cornerRadius">10dp</item>
 
     </style>
+
+
 
 </resources>

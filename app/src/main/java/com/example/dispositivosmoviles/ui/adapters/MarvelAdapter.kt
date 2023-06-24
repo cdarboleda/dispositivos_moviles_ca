@@ -6,20 +6,37 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.dispositivosmoviles.R
 import com.example.dispositivosmoviles.data.entities.marvel.MarvelChars
+import com.google.android.material.snackbar.Snackbar
 import com.example.dispositivosmoviles.databinding.MarvelCharactersBinding
+import com.squareup.picasso.Picasso
 
-class MarvelAdapter(private val items: List<MarvelChars>) : RecyclerView.Adapter<MarvelAdapter.MarvelViewHolder>(){
+class MarvelAdapter(
+    private val items: List<MarvelChars>,
+    private var fnClick: (MarvelChars) -> Unit //no devuelve nada
+) :
+    RecyclerView.Adapter<MarvelAdapter.MarvelViewHolder>() {
 
     class MarvelViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-        private val binding : MarvelCharactersBinding = MarvelCharactersBinding.bind(view)
-        fun render(item : MarvelChars) {
 
-            binding.txtName.text = item.name;
+        private val binding: MarvelCharactersBinding = MarvelCharactersBinding.bind(view)
+
+        fun render(
+            item: MarvelChars,
+            fnClick: (MarvelChars) -> Unit
+        ) {
+            binding.marvelTitle.text = item.name;
             binding.txtComic.text = item.comic;
+            Picasso.get().load(item.image).into(binding.imgMarvel)
+
+            itemView.setOnClickListener{
+                //Snackbar.make(binding.imgMarvel, item.name, Snackbar.LENGTH_SHORT).show()
+                fnClick(item)
+            }
         }
 
 
     }
+
     override fun onCreateViewHolder(
         parent: ViewGroup,
         viewType: Int
@@ -29,12 +46,14 @@ class MarvelAdapter(private val items: List<MarvelChars>) : RecyclerView.Adapter
         return MarvelViewHolder(
             inflater.inflate(
                 R.layout.marvel_characters,
-                parent, false))
+                parent, false
+            )
+        )
 
     }
 
     override fun onBindViewHolder(holder: MarvelAdapter.MarvelViewHolder, position: Int) {
-        holder.render(items[position])
+        holder.render(items[position], fnClick)
     }
 
     override fun getItemCount(): Int = items.size
