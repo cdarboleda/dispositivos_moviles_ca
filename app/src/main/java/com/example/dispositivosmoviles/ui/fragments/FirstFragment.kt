@@ -5,19 +5,20 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Adapter
 import android.widget.ArrayAdapter
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import com.example.dispositivosmoviles.R
 import com.example.dispositivosmoviles.data.entities.marvel.MarvelChars
-
 import com.example.dispositivosmoviles.databinding.FragmentFirstBinding
-import com.example.dispositivosmoviles.logic.lists.ListItems
+import com.example.dispositivosmoviles.logic.jikanLogic.JikanAnimeLogic
+import com.example.dispositivosmoviles.logic.marvelLogic.MarvelLogic
 import com.example.dispositivosmoviles.ui.activities.DetailsMarvelItem
-import com.example.dispositivosmoviles.ui.activities.MainActivity
 import com.example.dispositivosmoviles.ui.adapters.MarvelAdapter
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 /**
  * A simple [Fragment] subclass.
@@ -26,7 +27,7 @@ import com.example.dispositivosmoviles.ui.adapters.MarvelAdapter
  */
 class FirstFragment : Fragment() {
 
-    private lateinit var  binding: FragmentFirstBinding;
+    private lateinit var binding: FragmentFirstBinding;
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -44,6 +45,7 @@ class FirstFragment : Fragment() {
     override fun onStart() {
         super.onStart();
 
+
         val names = arrayListOf<String>("A", "B", "C", "D", "E")
 
         val adapter1 = ArrayAdapter<String>(
@@ -59,29 +61,37 @@ class FirstFragment : Fragment() {
         }
 
 
-
     }
 
-    fun sendMarvelItem(item: MarvelChars){
+    fun sendMarvelItem(item: MarvelChars) {
+        //Intent(contexto de la activity, .class de la activity)
         val i = Intent(requireActivity(), DetailsMarvelItem::class.java)
-        i.putExtra("name", item)
+        i.putExtra("item", item)//mandamos los items a la otra activity
         startActivity(i)
     }
 
-    fun chargeDataRV(){
-        val rvAdapter = MarvelAdapter(
-            ListItems().returnMarvelChars()
-        ) {sendMarvelItem(it)}
+    fun chargeDataRV() {
+        lifecycleScope.launch(Dispatchers.IO) {
+            val rvAdapter = MarvelAdapter(JikanAnimeLogic().getAllAnimes()) {
+                sendMarvelItem(it)
+            }
 
-        val rvMarvel = binding.rvMarvelChars
+/*            val rvAdapter = MarvelAdapter(MarvelLogic().getMarvelChars("cap", 3)) {
+                sendMarvelItem(it)
+            }*/
 
-        with(rvMarvel){
-            this.adapter = rvAdapter;
-            this.layoutManager = LinearLayoutManager(
-                    requireActivity(),
-                    LinearLayoutManager.VERTICAL,
-                    false
-                )
+            withContext(Dispatchers.Main) {
+                with(binding.rvMarvelChars) {
+                    this.adapter = rvAdapter;
+                    this.layoutManager = LinearLayoutManager(
+                        requireActivity(),
+                        LinearLayoutManager.VERTICAL,
+                        false
+                    )
+                }
+            }
         }
+
+
     }
 }
