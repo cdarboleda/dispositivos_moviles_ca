@@ -1,6 +1,7 @@
 package com.example.dispositivosmoviles.ui.activities
 
 import android.content.Intent
+import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
@@ -40,31 +41,35 @@ class MainActivity : AppCompatActivity() {
             )
 
             if(check){
-                var intent = Intent(
-                    this,
-                    PrincipalActivity::class.java
-                )
-                intent.putExtra(
-                    "var1",
-                    // binding.txtBuscar.text.toString())
-                    binding.txtName.text.toString()
-                )
+                var intent = Intent(this, PrincipalActivity::class.java)
+                intent.putExtra("var1", binding.txtName.text.toString())
                 intent.putExtra("var2", 2)
                 startActivity(intent)
             }else{
                 var snackbar = Snackbar.make(binding.txtTitle,
                     "Usuario o contraseña inválidos",
                     Snackbar.LENGTH_LONG)
-                snackbar.setBackgroundTint(ContextCompat.getColor(binding.root.context, R.color.principal_color_dm))
-
+                //snackbar.setBackgroundTint(ContextCompat.getColor(binding.root.context, R.color.principal_color_dm))
+                snackbar.setBackgroundTint(getResources().getColor(R.color.black))
                 snackbar.show()
             }
         }
     }
 
+    fun llamar(){
+
+        binding.btnFacebook.setOnClickListener(){
+            var uri = Uri.parse("tel:0963269273");
+            var intent = Intent(Intent.ACTION_DIAL, uri);
+            startActivity(intent)
+        }
+
+    }
+
     override fun onStart() {
         super.onStart()
         initClass()
+        llamar()
 
     }
 }
