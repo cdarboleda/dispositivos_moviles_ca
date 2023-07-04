@@ -11,11 +11,11 @@ import com.example.dispositivosmoviles.databinding.MarvelCharactersBinding
 import com.squareup.picasso.Picasso
 
 class MarvelAdapter(
-    private val items: List<MarvelChars>,
+
     private var fnClick: (MarvelChars) -> Unit //no devuelve nada
 ) :
     RecyclerView.Adapter<MarvelAdapter.MarvelViewHolder>() {
-
+    var items: List<MarvelChars> = listOf()
     class MarvelViewHolder(view: View) : RecyclerView.ViewHolder(view) {
 
         private val binding: MarvelCharactersBinding = MarvelCharactersBinding.bind(view)
@@ -26,7 +26,7 @@ class MarvelAdapter(
         ) {
             binding.txtName.text = item.name;
             binding.txtComic.text = item.comic;
-            Picasso.get().load(item.image).into(binding.imgMarvel)
+            Picasso.get().load(item.image).into(binding.imgImage)
 
             itemView.setOnClickListener{
                 //Snackbar.make(binding.imgMarvel, item.name, Snackbar.LENGTH_SHORT).show()
@@ -58,5 +58,9 @@ class MarvelAdapter(
 
     override fun getItemCount(): Int = items.size
 
+    fun updateListItems(newitems : List<MarvelChars>){
+        this.items = this.items.plus(newitems)
+        notifyDataSetChanged()
+    }
 
 }

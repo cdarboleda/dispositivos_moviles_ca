@@ -35,21 +35,13 @@ class PrincipalActivity : AppCompatActivity() {
 
         binding.btnRetorno.setOnClickListener {
             startActivity(
-                Intent(
-                    this,
-                    MainActivity::class.java
-                )
-            )
+                Intent(this, MainActivity::class.java))
         }
 
         binding.bottomNavigation.setOnItemSelectedListener { item ->
             when (item.itemId) {
                 R.id.menu_item_wifi -> {
-                    FragmentsManager().replaceFragment(
-                        supportFragmentManager,
-                        binding.frmContainter.id,
-                        FirstFragment()
-                    )
+                    FragmentsManager().replaceFragment(supportFragmentManager, binding.frmContainter.id, FirstFragment())
                     true
                 }
 
@@ -68,20 +60,10 @@ class PrincipalActivity : AppCompatActivity() {
                     true
                 }*/
                 R.id.menu_item_bluetooth -> {
-                    FragmentsManager().replaceFragment(
-                        supportFragmentManager,
-                        binding.frmContainter2.id,
-                        SecondFragment()
-                    )
+                    FragmentsManager().replaceFragment(supportFragmentManager, binding.frmContainter.id, SecondFragment())
                     true
                 }
-                R.id.menu_item_settings -> {
-                    // Respond to navigation item 2 click
-                    FragmentsManager().replaceFragment(
-                        supportFragmentManager,
-                        binding.frmContainter3.id,
-                        ThirdFragment()
-                    )
+                R.id.menu_item_settings -> { FragmentsManager().replaceFragment(supportFragmentManager, binding.frmContainter.id, ThirdFragment())
                     true
                 }
 
