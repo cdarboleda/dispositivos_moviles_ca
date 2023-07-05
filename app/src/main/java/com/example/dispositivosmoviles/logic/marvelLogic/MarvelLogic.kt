@@ -3,7 +3,7 @@ package com.example.dispositivosmoviles.logic.marvelLogic
 import android.util.Log
 import com.example.dispositivosmoviles.data.connections.ApiConnection
 import com.example.dispositivosmoviles.data.endpoints.MarvelEndpoint
-import com.example.dispositivosmoviles.data.entities.marvel.MarvelChars
+import com.example.dispositivosmoviles.logic.data.MarvelChars
 
 class MarvelLogic {
 
@@ -32,6 +32,8 @@ class MarvelLogic {
                     it.description,
                     it.thumbnail.path + "." + it.thumbnail.extension
                 )
+                Log.d("UCE", response.toString())
+
                 itemList.add(m)
             }
         } else {
