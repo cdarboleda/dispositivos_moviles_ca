@@ -6,6 +6,7 @@
     android:layout_margin="14dp"
     android:background="@drawable/background_marvel2"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:windowSoftInputMode="adjustResize"
     tools:context=".ui.fragments.FirstFragment">
 
     <androidx.cardview.widget.CardView
@@ -62,12 +63,13 @@
         android:id="@+id/spinner"
         android:layout_width="match_parent"
         android:layout_height="48dp"
-        app:layout_constraintBottom_toTopOf="@+id/ctnMarvelChars"
-        app:layout_constraintTop_toBottomOf="@+id/cardView"
         android:layout_marginTop="10dp"
         android:layout_marginLeft="25dp"
         android:layout_marginRight="25dp"
-        tools:layout_editor_absoluteX="0dp">
+        app:layout_constraintBottom_toTopOf="@+id/ctnMarvelChars"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/cardView">
 
     </Spinner>
 
@@ -85,18 +87,21 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/spinner">
 
+
         <EditText
             android:id="@+id/txtFilter"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textColor="@color/white"
-            android:textSize="14sp"
             android:maxLines="1"
             android:singleLine="true"
             android:imeOptions="actionDone"
+            android:textSize="14sp"
+
             >
 
         </EditText>
+
 
         <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
             android:id="@+id/rvSwipe"
@@ -107,9 +112,7 @@
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rvMarvelChars"
                 android:layout_width="327dp"
-                android:layout_height="307dp"
-                tools:layout_editor_absoluteX="24dp"
-                tools:layout_editor_absoluteY="376dp" />
+                android:layout_height="307dp" />
 
         </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 

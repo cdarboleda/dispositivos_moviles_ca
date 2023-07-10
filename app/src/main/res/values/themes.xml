@@ -15,7 +15,6 @@
     <style name="Theme.DispositivosMoviles" parent="Base.Theme.DispositivosMoviles">
 
         <item name="android:fontFamily"> @font/roboto </item>
-        <item name="android:textColor"> @color/font_color_dm </item>
         <item name="android:textSize"> 14sp </item>
 
     </style>

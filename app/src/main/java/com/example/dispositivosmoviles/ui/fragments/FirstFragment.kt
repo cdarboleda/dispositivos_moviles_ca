@@ -8,28 +8,32 @@ import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.Fragment
+
 import androidx.lifecycle.lifecycleScope
+import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.dispositivosmoviles.R
-import com.example.dispositivosmoviles.data.entities.marvel.MarvelChars
+import com.example.dispositivosmoviles.logic.data.MarvelChars
 import com.example.dispositivosmoviles.databinding.FragmentFirstBinding
-import com.example.dispositivosmoviles.logic.jikanLogic.JikanAnimeLogic
 import com.example.dispositivosmoviles.logic.marvelLogic.MarvelLogic
 import com.example.dispositivosmoviles.ui.activities.DetailsMarvelItem
 import com.example.dispositivosmoviles.ui.adapters.MarvelAdapter
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
+import kotlin.collections.mutableListOf
+
 
 class FirstFragment : Fragment() {
 
     private lateinit var binding: FragmentFirstBinding;
-    private lateinit var rvAdapter: MarvelAdapter;
-    private lateinit var lmanager : LinearLayoutManager
+    private var rvAdapter: MarvelAdapter = MarvelAdapter { sendMarvelItem(it) }
+    private lateinit var lManager: LinearLayoutManager
+    private lateinit var gManager: GridLayoutManager
     private var page = 1
 
-    private lateinit var marvelCharsItems : MutableList<MarvelChars>
+    private var marvelCharsItems: MutableList<MarvelChars> = mutableListOf<MarvelChars>()
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -42,10 +46,14 @@ class FirstFragment : Fragment() {
         )
 
 
-        lmanager = LinearLayoutManager(
-                requireActivity(),
-        LinearLayoutManager.VERTICAL,
-        false)
+        lManager = LinearLayoutManager(
+            requireActivity(),
+            LinearLayoutManager.VERTICAL,
+            false
+        )
+
+        //Dos por fila
+        gManager = GridLayoutManager(requireActivity(), 2)
         return binding.root
 
     }
@@ -62,32 +70,34 @@ class FirstFragment : Fragment() {
             names
         )
 
-        //binding.spinner.adapter = adapter1
+        binding.spinner.adapter = adapter1
         chargeDataRV(5)
 
         binding.rvSwipe.setOnRefreshListener {
             chargeDataRV(5)
             binding.rvSwipe.isRefreshing = false
-            lmanager.scrollToPositionWithOffset(5, 20)
+            lManager.scrollToPositionWithOffset(5, 20)
         }
 
         binding.rvMarvelChars.addOnScrollListener(
-            object: RecyclerView.OnScrollListener(){
+            object : RecyclerView.OnScrollListener() {
                 override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
                     super.onScrolled(recyclerView, dx, dy)
-                    if(dx>0){
-                        val v = lmanager.childCount//Cuantos han pasado
-                        val p = lmanager.findFirstVisibleItemPosition()//Cual es mi posicion actual
-                        val t = lmanager.itemCount//Cuantos tengo en total
+                    if (dx > 0) {
+                        val v = lManager.childCount//Cuantos han pasado
+                        val p = lManager.findFirstVisibleItemPosition()//Cual es mi posicion actual
+                        val t = lManager.itemCount//Cuantos tengo en total
 
                         if ((v + p) >= t) {
                             lifecycleScope.launch((Dispatchers.Main))
                             {
-                                val x = with(Dispatchers.IO){
-                                    MarvelLogic().getMarvelChars(name = "spider", page*3 )
+                                val items = with(Dispatchers.IO) {
+
+
+                                    MarvelLogic().getAllMarvelChars(0, page * 3)
                                     //JikanAnimeLogic().getAllAnimes()
                                 }
-                                rvAdapter.updateListAdapter((x))
+                                rvAdapter.updateListAdapter((items))
 
                             }
                         }
@@ -97,9 +107,9 @@ class FirstFragment : Fragment() {
                 }
             })
 
-        binding.txtFilter.addTextChangedListener{ filteredText ->
-            val newItems = marvelCharsItems.filter {items ->
-                items.name.contains(filteredText.toString())
+        binding.txtFilter.addTextChangedListener { filteredText ->
+            val newItems = marvelCharsItems.filter { items ->
+                items.name.lowercase().contains(filteredText.toString().lowercase())
             }
 
             rvAdapter.replaceListAdapter(newItems)
@@ -107,13 +117,13 @@ class FirstFragment : Fragment() {
 
     }
 
-    fun corrotine(){
-        lifecycleScope.launch(Dispatchers.Main){
+    fun corrotine() {
+        lifecycleScope.launch(Dispatchers.Main) {
             var name = "Bayron"
 
             name = withContext(Dispatchers.IO)
             {
-                name ="Jairo"
+                name = "Jairo"
                 return@withContext name
             }
 
@@ -128,28 +138,26 @@ class FirstFragment : Fragment() {
         startActivity(i)
     }
 
-    fun chargeDataRV(pos:Int) {
-        lifecycleScope.launch(Dispatchers.IO) {
+    fun chargeDataRV(pos: Int) {
+        lifecycleScope.launch(Dispatchers.Main) {
             //rvAdapter.items = JikanAnimeLogic().getAllAnimes()
-            var marvelCharsItems = MarvelLogic().getMarvelChars(
-                "spider", page*2
-            )
+            marvelCharsItems = withContext(Dispatchers.IO) {
+                return@withContext (MarvelLogic().getAllMarvelChars(
+                    0, page * 3
+                ))
+            }
+            rvAdapter.items = marvelCharsItems
 
-            rvAdapter = MarvelAdapter(
-                marvelCharsItems,
-                fnClick = { sendMarvelItem(it) })
+            binding.rvMarvelChars.apply {
+                this.adapter = rvAdapter;
+                this.layoutManager = gManager;
 
-            withContext(Dispatchers.Main) {
-                with(binding.rvMarvelChars) {
-                    this.adapter = rvAdapter;
-                    this.layoutManager = lmanager;
 
-                }
-                lmanager.scrollToPositionWithOffset(pos ,10)
+                gManager.scrollToPositionWithOffset(pos, 10)
             }
         }
         page++
-
-
     }
+
+
 }
