@@ -26,10 +26,13 @@ class PrincipalActivity : AppCompatActivity() {
     override fun onStart() {
         super.onStart()
         var name: String = " "
+
         /*
         intent.extras.let {
-            name= it?.getString("var1")!!
-        */
+            name= it?.getString("var1")!!}
+
+         */
+
         Log.d("UCE", "Hola ${name}")
         binding.txtTitle.text = "Bienvenido " + name.toString()
 

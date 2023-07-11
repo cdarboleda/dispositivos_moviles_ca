@@ -1,4 +1,4 @@
-package com.example.dispositivosmoviles.ui.adapters
+package com.example.dispositivosmoviles.data.entities.marvel.characters.adapters
 
 import android.view.LayoutInflater
 import android.view.View
@@ -39,7 +39,7 @@ class MarvelAdapter(
     override fun onCreateViewHolder(
         parent: ViewGroup,
         viewType: Int
-    ): MarvelAdapter.MarvelViewHolder {
+    ): MarvelViewHolder {
         val inflater = LayoutInflater.from(parent.context)
 
         return MarvelViewHolder(
@@ -51,7 +51,7 @@ class MarvelAdapter(
 
     }
 
-    override fun onBindViewHolder(holder: MarvelAdapter.MarvelViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: MarvelViewHolder, position: Int) {
         holder.render(items[position], fnClick)
     }
 

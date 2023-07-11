@@ -11,6 +11,7 @@ import android.widget.Toast
 import androidx.core.content.ContextCompat
 import com.example.dispositivosmoviles.R
 import com.example.dispositivosmoviles.databinding.ActivityMainBinding
+import com.example.dispositivosmoviles.ui.utilities.DispositivosMoviles
 import com.example.dispositivosmoviles.ui.validator.LoginValidator
 
 
@@ -56,20 +57,13 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    fun llamar(){
-
-        binding.btnFacebook.setOnClickListener(){
-            var uri = Uri.parse("tel:0963269273");
-            var intent = Intent(Intent.ACTION_DIAL, uri);
-            startActivity(intent)
-        }
-
-    }
 
     override fun onStart() {
         super.onStart()
         initClass()
-        llamar()
+//Cuando instancio accedo a lo que esta dentro de la clase
+        //Cuando no instancio accedo a lo que tiene dentro del companion object
+    val db = DispositivosMoviles.getDbInstance()
 
     }
 }

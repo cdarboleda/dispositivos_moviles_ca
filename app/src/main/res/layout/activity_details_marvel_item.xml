@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
 
     >
 
@@ -11,7 +11,7 @@
 
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@drawable/colormarvel"
+        android:background="@drawable/background_marvel2"
         android:orientation="vertical"
         tools:context=".ui.activities.DetailsMarvelItem">
 
@@ -21,10 +21,9 @@
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="10dp"
             android:layout_marginTop="25dp"
-            android:fontFamily="@font/satisfy"
-            android:background="@color/azulmarvel"
+            android:fontFamily="@font/marvel2"
             android:textAlignment="center"
-            android:textColor="@color/redmarvel"
+            android:textColor="@color/white"
             android:textSize="32sp"
             android:textStyle="bold" />
 
@@ -46,7 +45,7 @@
             android:layout_gravity="center"
             android:layout_marginHorizontal="10dp"
             android:layout_marginTop="10dp"
-            android:fontFamily="@font/satisfy"
+            android:fontFamily="@font/roboto_light"
             android:textAlignment="center"
             android:textColor="@color/principal_color_dm"
             android:textSize="24sp"
