@@ -17,6 +17,9 @@ import com.example.dispositivosmoviles.logic.data.MarvelChars
 import com.example.dispositivosmoviles.logic.marvelLogic.MarvelLogic
 import com.example.dispositivosmoviles.ui.activities.DetailsMarvelItem
 import com.example.dispositivosmoviles.data.entities.marvel.characters.adapters.MarvelAdapter
+import com.example.dispositivosmoviles.logic.data.getMarvelCharsDB
+import com.example.dispositivosmoviles.ui.utilities.DispositivosMoviles
+import com.example.dispositivosmoviles.ui.utilities.Metodos
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
@@ -25,11 +28,14 @@ import kotlinx.coroutines.withContext
 class FirstFragment : Fragment() {
 
     private lateinit var binding: FragmentFirstBinding;
-    private var rvAdapter: MarvelAdapter = MarvelAdapter { sendMarvelItem(it) }
+    private var rvAdapter: MarvelAdapter = MarvelAdapter(
+        { item -> sendMarvelItem(item) },
+        { item -> saveMarvelItem(item) }
+    )
     private lateinit var lManager: LinearLayoutManager
     private lateinit var gManager: GridLayoutManager
-    private var page = 1
-
+    private val limit = 10
+    private var offset = 0
     private var marvelCharsItems: MutableList<MarvelChars> = mutableListOf<MarvelChars>()
 
 
@@ -69,10 +75,10 @@ class FirstFragment : Fragment() {
         )
 
         binding.spinner.adapter = adapter1
-        chargeDataRVDB(5)
+        chargeDataRVInit(limit, offset)
 
         binding.rvSwipe.setOnRefreshListener {
-            chargeDataRVDB(5)
+            chargeDataRVInit(limit, offset)
             binding.rvSwipe.isRefreshing = false
             lManager.scrollToPositionWithOffset(5, 20)
         }
@@ -89,13 +95,12 @@ class FirstFragment : Fragment() {
                         if ((v + p) >= t) {
                             lifecycleScope.launch((Dispatchers.Main))
                             {
-                                val items = with(Dispatchers.IO) {
-
-
-                                    MarvelLogic().getAllMarvelChars(0, page * 3)
+                                val x = with(Dispatchers.IO) {
+                                    MarvelLogic().getAllMarvelChars(0, limit)
                                     //JikanAnimeLogic().getAllAnimes()
                                 }
-                                rvAdapter.updateListAdapter((items))
+                                rvAdapter.updateListAdapter((x))
+                                this@FirstFragment.offset += offset
 
                             }
                         }
@@ -136,62 +141,75 @@ class FirstFragment : Fragment() {
         startActivity(i)
     }
 
-    fun chargeDataRVAPI(pos: Int) {
-        lifecycleScope.launch(Dispatchers.Main) {
-            //rvAdapter.items = JikanAnimeLogic().getAllAnimes()
-            marvelCharsItems = withContext(Dispatchers.IO) {
-                //cambiaraqdasdasdsa
-                return@withContext MarvelLogic().getAllMarvelCharDB().toMutableList()
-            }
-            rvAdapter.items = marvelCharsItems
 
-            binding.rvMarvelChars.apply {
-                this.adapter = rvAdapter;
-                this.layoutManager = gManager;
-
-
-                gManager.scrollToPositionWithOffset(pos, 10)
+        fun saveMarvelItem(item: MarvelChars) :Boolean{
+        //Intent(contexto de la activity, .class de la activity)
+        lifecycleScope.launch(Dispatchers.Main){
+            withContext(Dispatchers.IO){
+                DispositivosMoviles
+                    .getDbInstance()
+                    .marvelDao()
+                    .insertMarvelCharacter(listOf( item.getMarvelCharsDB()))
             }
         }
-        page++
+
+            return true
     }
 
-    fun chargeDataRVDB(pos: Int) {
+
+    fun chargeDataRVAPI(limit: Int, offset: Int) {
         lifecycleScope.launch(Dispatchers.Main) {
             //rvAdapter.items = JikanAnimeLogic().getAllAnimes()
             marvelCharsItems = withContext(Dispatchers.IO) {
-                var items = MarvelLogic()
-                    .getAllMarvelCharDB()
-                    .toMutableList()
-
-                if (items.isEmpty()) {
-                    items =
-                        (MarvelLogic().getAllMarvelChars(0, page * 3))
-
-                    MarvelLogic().insertMarvelCharstoDB(items)
-
-                }
-
-                return@withContext items
+                return@withContext MarvelLogic().getAllMarvelChars(offset,limit).toMutableList()
             }
-}
-//            withContext(Dispatchers.IO){
-//                MarvelLogic().insertMarvelCharstoDB(marvelCharsItems)
-//            }
             rvAdapter.items = marvelCharsItems
 
             binding.rvMarvelChars.apply {
                 this.adapter = rvAdapter;
                 this.layoutManager = gManager;
-
-
-                gManager.scrollToPositionWithOffset(pos, 10)
+                //gManager.scrollToPositionWithOffset(0, 10)
             }
-            page++
-
+            this@FirstFragment.offset += limit
         }
-        //        page++
+    }
+
+    fun chargeDataRVInit(limit: Int, offset: Int) {
+
+        if (Metodos().isOnline(requireActivity())) {
+            lifecycleScope.launch(Dispatchers.Main) {
+
+                marvelCharsItems = withContext(Dispatchers.IO) {
+
+                    /* var items = MarvelLogic().getAllMarvelCharDB().toMutableList()
+
+                     if (items.isEmpty()) {
+                         items = (MarvelLogic().getAllMarvelChars(
+                             0, 99
+                         ))
+                         MarvelLogic().insertMarvelCharstoDB(items)
+
+                     }*/
+                    //Utilizando las capas, el método de arriba fue cambiado a la capa Logic (MarvelLogic)
+                    return@withContext MarvelLogic().getInitChars(offset,limit)
+                }
 
 
+                /*withContext(Dispatchers.IO){
+            }
+            */
+                this@FirstFragment.offset+=limit
+                rvAdapter.items = marvelCharsItems
 
+                binding.rvMarvelChars.apply {
+                    this.adapter = rvAdapter;
+                    this.layoutManager = gManager;
+
+
+                    gManager.scrollToPositionWithOffset(limit, 10)
+                }
+            }
+        }
+
+    }
 }

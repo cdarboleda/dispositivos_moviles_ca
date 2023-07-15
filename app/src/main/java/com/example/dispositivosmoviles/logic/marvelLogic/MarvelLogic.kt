@@ -5,11 +5,14 @@ import com.example.dispositivosmoviles.data.connections.ApiConnection
 import com.example.dispositivosmoviles.data.endpoints.MarvelEndpoint
 import com.example.dispositivosmoviles.data.entities.marvel.characters.database.MarvelCharsDB
 import com.example.dispositivosmoviles.data.entities.marvel.characters.database.getMarvelChars
+
 import com.example.dispositivosmoviles.data.entities.marvel.characters.getMarvelChars
 import com.example.dispositivosmoviles.logic.data.MarvelChars
 import com.example.dispositivosmoviles.logic.data.getMarvelCharsDB
+
 import com.example.dispositivosmoviles.ui.utilities.DispositivosMoviles
 import kotlinx.coroutines.Dispatchers
+import java.lang.RuntimeException
 
 class MarvelLogic {
 
@@ -74,13 +77,31 @@ class MarvelLogic {
         var itemsDB = arrayListOf<MarvelCharsDB>()
         items.forEach{
               itemsDB.add(it.getMarvelCharsDB())
-
-
         }
 
         DispositivosMoviles.getDbInstance().
         marvelDao().
         insertMarvelCharacter(itemsDB)
+    }
+
+    suspend fun  getInitChars(limit: Int, offset: Int):MutableList<MarvelChars>{
+        var items = mutableListOf<MarvelChars>()
+        try{
+            items = MarvelLogic()
+                .getAllMarvelCharDB()
+                .toMutableList()
+
+            if(items.isEmpty()){
+                items = (MarvelLogic().getAllMarvelChars(
+                    offset = offset,limit
+                ))
+                MarvelLogic().insertMarvelCharstoDB(items)
+            }
+
+        }catch (ex: Exception){
+            throw RuntimeException(ex.message)
+        }
+        return items
     }
 
 }
