@@ -26,11 +26,17 @@ fun Result.getMarvelChars() : MarvelChars{
         comic = comics.items[0].name
     }
 
+    var synopsys: String = "No available"
+
+    if (description.isNotBlank()) {
+        synopsys = description
+    }
+
     return MarvelChars(
         id,
         name,
         comic,
-        description,
+        synopsys,
         thumbnail.path + "." + thumbnail.extension
     )
 }

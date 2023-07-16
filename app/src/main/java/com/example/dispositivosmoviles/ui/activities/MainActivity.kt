@@ -1,14 +1,19 @@
 package com.example.dispositivosmoviles.ui.activities
 
+import android.content.Context
 import android.content.Intent
-import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.widget.Button
 import android.widget.TextView
 import android.widget.Toast
-import androidx.core.content.ContextCompat
+import androidx.datastore.core.DataStore
+import androidx.datastore.preferences.core.Preferences
+import androidx.datastore.preferences.core.edit
+import androidx.datastore.preferences.core.stringPreferencesKey
+import androidx.datastore.preferences.preferencesDataStore
+import androidx.lifecycle.lifecycleScope
 import com.example.dispositivosmoviles.R
 import com.example.dispositivosmoviles.databinding.ActivityMainBinding
 import com.example.dispositivosmoviles.ui.utilities.DispositivosMoviles
@@ -16,8 +21,17 @@ import com.example.dispositivosmoviles.ui.validator.LoginValidator
 
 
 import com.google.android.material.snackbar.Snackbar
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import java.util.UUID
+
+// At the top level of your kotlin file:
+val Context.dataStore: DataStore<Preferences>
+by preferencesDataStore(name = "settings")
 
 class MainActivity : AppCompatActivity() {
+
+
 
     //Para enalzar y utilizar el Binding
     private lateinit var binding: ActivityMainBinding
@@ -42,6 +56,10 @@ class MainActivity : AppCompatActivity() {
             )
 
             if(check){
+                lifecycleScope.launch(Dispatchers.IO){
+                    saveDataStore(binding.txtName.text.toString())
+                }
+
                 var intent = Intent(this, PrincipalActivity::class.java)
                 intent.putExtra("var1", binding.txtName.text.toString())
                 intent.putExtra("var2", 2)
@@ -66,4 +84,14 @@ class MainActivity : AppCompatActivity() {
     val db = DispositivosMoviles.getDbInstance()
 
     }
+
+    private suspend fun saveDataStore(stringData: String){
+        dataStore.edit {prefs ->
+            prefs[stringPreferencesKey("usuario")] = stringData
+            prefs[stringPreferencesKey("session")] = UUID.randomUUID().toString()
+            prefs[stringPreferencesKey("email")] = "dispositivosmoviles@uce.edu.ec"
+                
+        }
+    }
+
 }
