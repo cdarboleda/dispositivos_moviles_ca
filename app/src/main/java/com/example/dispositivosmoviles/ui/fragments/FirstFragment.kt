@@ -21,6 +21,7 @@ import com.example.dispositivosmoviles.logic.marvelLogic.MarvelLogic
 import com.example.dispositivosmoviles.ui.activities.DetailsMarvelItem
 import com.example.dispositivosmoviles.data.entities.marvel.characters.adapters.MarvelAdapter
 import com.example.dispositivosmoviles.logic.data.getMarvelCharsDB
+import com.example.dispositivosmoviles.logic.jikanLogic.JikanAnimeLogic
 import com.example.dispositivosmoviles.ui.activities.dataStore
 import com.example.dispositivosmoviles.ui.data.UserDataStore
 import com.example.dispositivosmoviles.ui.utilities.DispositivosMoviles
@@ -30,7 +31,6 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
-
 
 
 class FirstFragment : Fragment() {
@@ -112,8 +112,8 @@ class FirstFragment : Fragment() {
                             lifecycleScope.launch((Dispatchers.Main))
                             {
                                 val x = with(Dispatchers.IO) {
-                                    MarvelLogic().getAllMarvelChars(0, limit)
-                                    //JikanAnimeLogic().getAllAnimes()
+                                    //MarvelLogic().getAllMarvelChars(0, limit)
+                                    JikanAnimeLogic().getAllAnimes()
                                 }
                                 rvAdapter.updateListAdapter((x))
                                 this@FirstFragment.offset += offset
@@ -136,14 +136,14 @@ class FirstFragment : Fragment() {
 
     }
 
-/*    private suspend fun initFun(){
-        lifecycleScope.launch(Dispatchers.Main){
-            val asyncFun = async {
-                getDataApi(offset)
+    /*    private suspend fun initFun(){
+            lifecycleScope.launch(Dispatchers.Main){
+                val asyncFun = async {
+                    getDataApi(offset)
+                }
+                marvelCharsItems =
             }
-            marvelCharsItems =
-        }
-    }*/
+        }*/
 
     fun corrotine() {
         lifecycleScope.launch(Dispatchers.Main) {
@@ -167,7 +167,7 @@ class FirstFragment : Fragment() {
     }
 
 
-        fun saveMarvelItem(item: MarvelChars) :Boolean{
+    fun saveMarvelItem(item: MarvelChars) :Boolean{
         //Intent(contexto de la activity, .class de la activity)
         lifecycleScope.launch(Dispatchers.Main){
             withContext(Dispatchers.IO){
@@ -178,7 +178,7 @@ class FirstFragment : Fragment() {
             }
         }
 
-            return item !== null
+        return item !== null
     }
 
     private fun getDataStore() =
@@ -191,14 +191,14 @@ class FirstFragment : Fragment() {
 
 
 
-    }
+        }
 
 
-    fun chargeDataRVAPI(limit: Int, offset: Int) {
+    fun chargeDataRVAPI(search: String) {
         lifecycleScope.launch(Dispatchers.Main) {
             //rvAdapter.items = JikanAnimeLogic().getAllAnimes()
             marvelCharsItems = withContext(Dispatchers.IO) {
-                return@withContext MarvelLogic().getAllMarvelChars(offset,limit).toMutableList()//
+                return@withContext MarvelLogic().getMarvelChars(search,limit)
             }
             rvAdapter.items = marvelCharsItems
 

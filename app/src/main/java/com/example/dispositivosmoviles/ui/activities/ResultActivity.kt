@@ -22,6 +22,7 @@ class ResultActivity : AppCompatActivity() {
             val i = Intent()
             i.putExtra("result", "Resultado Exitoso")
             setResult(RESULT_OK, i)
+            //onDestroy()
             finish()
         }
 
@@ -29,6 +30,7 @@ class ResultActivity : AppCompatActivity() {
             val i = Intent()
             i.putExtra("result", "Resultado Fallido")
             setResult(RESULT_CANCELED, i)
+            //onDestroy()
             finish()
         }
 
