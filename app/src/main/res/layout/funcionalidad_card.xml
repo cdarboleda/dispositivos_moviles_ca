@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/crd_funcionalidad"
+        android:layout_width="match_parent"
+        android:layout_height="131dp"
+        android:clickable="true"
+        app:cardElevation="50dp"
+        app:strokeWidth="0dp"
+        android:layout_marginBottom="15dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.513"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintVertical_bias="0.029">
+
+        <ImageView
+            android:id="@+id/crd_funcionalidad_imagen"
+            android:layout_width="match_parent"
+            android:layout_height="194dp"
+            app:srcCompat="@drawable/speech_background"
+            android:scaleType="centerCrop"/>
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            >
+
+            <TextView
+                android:id="@+id/crd_funcionalidad_nombre"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="@dimen/marginTop_Bottom_Login"
+                android:fontFamily="@font/poppins_medium"
+                android:shadowColor="#000000"
+                android:shadowRadius="1"
+                android:text="Actividad"
+                android:textAlignment="center"
+                android:textColor="#FFFFFF"
+                android:textFontWeight="50"
+                android:textSize="25dp" />
+            <TextView
+                android:id="@+id/crd_funcionalidad_descripcion"
+                android:layout_width="wrap_content"
+                android:layout_marginHorizontal="@dimen/marginTop_Bottom_Login"
+                android:layout_marginBottom="@dimen/marginTop_Bottom_Login"
+                android:layout_height="wrap_content"
+                android:textColor="@color/white"
+
+                android:text="descripcion"
+                android:textAppearance="?attr/textAppearanceTitleMedium"
+                />
+
+
+        </LinearLayout>
+
+    </com.google.android.material.card.MaterialCardView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -13,7 +13,6 @@ object ApiConnection {
 
     private val API_JIKAN = "https://api.jikan.moe/v4/"
     private val API_MARVEL = "https://gateway.marvel.com/v1/public/"
-    private val API_PETS = "https://gateway.marvel.com/v1/public/"
 
 
     private fun getConnection(base : String): Retrofit {
@@ -34,9 +33,6 @@ object ApiConnection {
 
             typeApi.Marvel.name -> {
                 BASE = API_MARVEL
-            }
-            typeApi.Pets.name -> {
-                BASE = API_PETS
             }
         }
         return getConnection(BASE).create(service)

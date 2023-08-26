@@ -6,63 +6,74 @@
     </style>
 
     <style name="ActiveIndicator" parent="Widget.Material3.BottomNavigationView.ActiveIndicator">
-
         <item name="android:color">@color/title_color_dm</item>
-
     </style>
-
 
     <style name="Theme.DispositivosMoviles" parent="Base.Theme.DispositivosMoviles">
-
-        <item name="android:fontFamily"> @font/roboto </item>
-        <item name="android:textSize"> 14sp </item>
-
-    </style>
-
-    <style name="textTitle">
-        <item name="android:fontFamily"> @font/roboto </item>
-        <item name="android:textColor">@color/purple</item>
-        <item name="android:textStyle"> bold </item>
-        <item name="android:textSize"> 30sp </item>
-
+        <item name="android:fontFamily">@font/roboto</item>
+        <item name="android:textSize">14sp</item>
 
     </style>
 
-    <style name="ButtonsGeneral" >
-        <item name="android:textStyle"> bold </item>
-        <item name="android:textSize"> 12sp </item>
-        <item name="android:textColor"> @color/white </item>
-        <item name  ="android:backgroundTint"> @color/title_color_dm </item>
+    <style name="SplashTheme" parent="Theme.DispositivosMoviles">
+        <item name="android:windowBackground">@drawable/splash_screen</item>
+    </style>
+
+    <style name="appTitle">
+        <item name="android:fontFamily">@font/cabin</item>
+        <item name="android:textColor">@color/title_color_dm</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textSize">22dp</item>
+        <item name="android:gravity">center</item>
+        <item name="android:text">@string/app_name_menu</item>
+    </style>
+
+    <style name="LblLogin">
+        <item name="android:textStyle">bold</item>
+        <item name="android:textSize">12dp</item>
+        <item name="android:textColor">@color/yellow</item>
+    </style>
+
+    <style name="SpinnerDropDownItemStyle" parent="Widget.AppCompat.DropDownItem.Spinner">
+        <item name="android:textSize">25dp</item>
+        <item name ="android:background">@color/white</item>
+
+    </style>
+
+    <style name="ButtonsGeneral">
+        <item name="android:textStyle">bold</item>
+        <item name="android:textSize">12sp</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:backgroundTint">@color/title_color_dm</item>
         <item name="cornerRadius">8dp</item>
     </style>
 
-    <style name="ButtonFlat" >
-        <item name="android:textStyle"> bold </item>
-        <item name="android:textSize"> 12sp </item>
-        <item name="android:backgroundTint"> @android:color/transparent</item>
-        <item name="android:textColor"> @color/principal_color_dm </item>
+    <style name="ButtonFlat">
+        <item name="android:textStyle">bold</item>
+        <item name="android:textSize">12sp</item>
+        <item name="android:backgroundTint">@android:color/transparent</item>
+        <item name="android:textColor">@color/principal_color_dm</item>
         <item name="cornerRadius">8dp</item>
     </style>
 
     <style name="ButtonTwitter" parent="ButtonsGeneral">
-        <item name  ="android:backgroundTint"> @color/twitter_color_dm </item>
+        <item name="android:backgroundTint">@color/twitter_color_dm</item>
     </style>
 
     <style name="ButtonFacebook" parent="ButtonsGeneral">
-        <item name="android:backgroundTint"> @color/facebook_color_dm </item>
-        <item name="fontFamily"> @font/facebook</item>
-        <item name="android:textStyle"> normal </item>
+        <item name="android:backgroundTint">@color/facebook_color_dm</item>
+        <item name="fontFamily">@font/facebook</item>
+        <item name="android:textStyle">normal</item>
     </style>
 
-    <style name="ButtonLogin" >
-        <item name="android:textStyle"> bold </item>
-        <item name="android:textSize"> 12sp </item>
-        <item name="android:textColor"> @color/white </item>
-        <item name="android:backgroundTint"> @color/principal_color_dm </item>
+    <style name="ButtonLogin">
+        <item name="android:textStyle">bold</item>
+        <item name="android:textSize">12sp</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:backgroundTint">@color/principal_color_dm</item>
         <item name="cornerRadius">10dp</item>
 
     </style>
-
 
 
 </resources>

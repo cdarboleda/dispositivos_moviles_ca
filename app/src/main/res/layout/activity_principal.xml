@@ -6,53 +6,39 @@
     android:layout_height="match_parent"
     tools:context=".ui.activities.PrincipalActivity">
 
-
-    <TextView
-        android:id="@+id/txtTitle"
-        style="@style/textTitle"
-        android:layout_width="371dp"
-        android:layout_height="94dp"
-        android:layout_marginTop="52dp"
-        android:fontFamily="@font/roboto_light"
-        android:text="Bienvenido"
-        android:textAlignment="center"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:layout_editor_absoluteX="20dp" />
-
-    <Button
-        android:id="@+id/btnRetorno"
-        style="@style/ButtonsGeneral"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="104dp"
-        android:text="Soy un botón"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txtTitle" />
-
-
     <FrameLayout
         android:id="@+id/frm_containter"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
-
-    <FrameLayout
-        android:id="@+id/frm_containter2"
-        android:layout_width="411dp"
-        android:layout_height="299dp"
-        app:layout_constraintBottom_toTopOf="@+id/bottom_navigation"
+        android:layout_height="match_parent"
+        android:layout_marginBottom="20dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnRetorno" />
+        app:layout_constraintTop_toTopOf="parent" />
 
 
-    <com.google.android.material.bottomnavigation.BottomNavigationView
-        android:id="@+id/bottom_navigation"
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:itemIconTint="@drawable/icon_selected"
-        app:itemActiveIndicatorStyle="@style/ActiveIndicator"
-        app:menu="@menu/bottom_navigation_menu"
-        app:layout_constraintBottom_toBottomOf="parent"/>
+        android:layout_alignParentBottom="true"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        >
+        <com.google.android.material.bottomnavigation.BottomNavigationView
+            android:id="@+id/bottom_navigation"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            app:itemActiveIndicatorStyle="@style/ActiveIndicator"
+            app:itemIconTint="@color/blue"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:menu="@menu/bottom_navigation_menu" />
+    </RelativeLayout>
+
+
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

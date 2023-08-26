@@ -8,6 +8,4 @@ interface JikanEndpoint {
 
     @GET("top/anime")
     suspend fun getAllAnimes(): Response<JikanAnimeEntity>
-
-
 }

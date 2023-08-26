@@ -10,6 +10,7 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.result.contract.ActivityResultContracts.*
 import com.example.dispositivosmoviles.R
 import com.example.dispositivosmoviles.databinding.ActivityCameraBinding
+import okhttp3.MediaType
 
 class CameraActivity : AppCompatActivity() {
 
@@ -19,6 +20,7 @@ class CameraActivity : AppCompatActivity() {
         binding = ActivityCameraBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        binding.imgCapture.setImageResource(R.drawable.app_logo_256)
         binding.btnCapture.setOnClickListener{
             val intent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
             cameraResult.launch(intent)

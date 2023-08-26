@@ -1,20 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
-        android:id="@+id/menu_item_wifi"
+        android:id="@+id/marvel"
         android:enabled="true"
-        android:icon="@drawable/baseline_wifi_24"
-        android:title="@string/menu_name_wifi"/>
+        android:icon="@drawable/spider"
+        android:title="@string/marvel"/>
     <item
-        android:id="@+id/menu_item_bluetooth"
+        android:id="@+id/marvel2"
         android:enabled="true"
-        android:icon="@drawable/baseline_bluetooth_24"
-        android:title="@string/menu_name_bluetooth"/>
+        android:icon="@drawable/ironman"
+        android:title="@string/marvel2"/>
     <item
-        android:id="@+id/menu_item_settings"
+        android:id="@+id/anime"
         android:enabled="true"
-        android:icon="@drawable/baseline_settings_24"
-        android:title="@string/menu_name_settings"/>
+        android:icon="@drawable/onepiece"
+        android:title="@string/anime"/>
 
 
 </menu>

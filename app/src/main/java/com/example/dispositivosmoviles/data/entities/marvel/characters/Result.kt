@@ -1,7 +1,5 @@
 package com.example.dispositivosmoviles.data.entities.marvel.characters
 
-import com.example.dispositivosmoviles.data.entities.marvel.characters.Result
-import com.example.dispositivosmoviles.data.entities.marvel.characters.database.MarvelCharsDB
 import com.example.dispositivosmoviles.logic.data.MarvelChars
 
 data class Result(
@@ -18,7 +16,7 @@ data class Result(
     val urls: List<Url>
 )
 //Funcion de extension para que me devuelva un MarvelChar custom
-fun Result.getMarvelChars() : MarvelChars{
+fun Result.getMarvelCharsApiCustom() : MarvelChars{
 
     var comic: String = "No available"
 

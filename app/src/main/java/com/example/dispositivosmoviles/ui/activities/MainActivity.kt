@@ -9,10 +9,10 @@ import android.widget.Button
 import android.widget.TextView
 import android.widget.Toast
 import androidx.core.content.ContextCompat
+import androidx.core.view.get
 import com.example.dispositivosmoviles.R
 import com.example.dispositivosmoviles.databinding.ActivityMainBinding
 import com.example.dispositivosmoviles.ui.utilities.DispositivosMoviles
-import com.example.dispositivosmoviles.ui.validator.LoginValidator
 
 
 import com.google.android.material.snackbar.Snackbar
@@ -35,26 +35,6 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun initClass() {
-        binding.btnLogin.setOnClickListener {
-
-            val check = LoginValidator().checkLogin(
-                binding.txtName.text.toString(), binding.txtPass.text.toString()
-            )
-
-            if(check){
-                var intent = Intent(this, PrincipalActivity::class.java)
-                intent.putExtra("var1", binding.txtName.text.toString())
-                intent.putExtra("var2", 2)
-                startActivity(intent)
-            }else{
-                var snackbar = Snackbar.make(binding.txtTitle,
-                    "Usuario o contraseña inválidos",
-                    Snackbar.LENGTH_LONG)
-                //snackbar.setBackgroundTint(ContextCompat.getColor(binding.root.context, R.color.principal_color_dm))
-                snackbar.setBackgroundTint(getResources().getColor(R.color.black))
-                snackbar.show()
-            }
-        }
     }
 
 

@@ -14,7 +14,9 @@ class DispositivosMoviles : Application() {
         db = Room.databaseBuilder(applicationContext,
             MarvelConnectionDB::class.java,
             "marvelDB"
-        ).build()
+
+        ).fallbackToDestructiveMigration()
+            .build()
     }
 
     companion object{

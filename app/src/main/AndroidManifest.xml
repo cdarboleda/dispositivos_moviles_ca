@@ -6,21 +6,58 @@
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
+    <uses-permission android:name="android.permission.SCHEDULE_EXACT_ALARM" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 
     <application
         android:name=".ui.utilities.DispositivosMoviles"
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
-        android:icon="@mipmap/logo"
+        android:icon="@drawable/app_logo"
         android:label="@string/app_name"
-        android:roundIcon="@mipmap/logo"
+        android:roundIcon="@drawable/app_logo"
         android:supportsRtl="true"
         android:theme="@style/Theme.DispositivosMoviles"
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <activity
+            android:name=".ui.activities.ChatGPT"
+            android:exported="false" />
+        <activity
+            android:name=".ui.activities.DetailsJikanItem"
+            android:exported="false" />
+        <activity
+            android:name=".ui.activities.SpeechToTextActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.activities.MapsLocationActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.activities.MenuActivity"
+            android:exported="false" />
+        <activity
             android:name=".ui.activities.PrincipalActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.activities.ProgressActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.activities.MainActivity"
+            android:exported="false" />
+
+        <receiver
+            android:name=".ui.utilities.BroadcasterNotifications"
+            android:enabled="true"
+            android:exported="false" />
+
+        <activity
+            android:name=".ui.activities.CameraActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.activities.NotificationActivity"
             android:exported="false" />
         <activity
             android:name=".ui.activities.ResultActivity"
@@ -29,11 +66,15 @@
             android:name=".ui.activities.DetailsMarvelItem"
             android:exported="false" />
         <activity
-            android:name=".ui.activities.MainActivity"
+            android:name=".ui.activities.DetailsMarvelItem2"
             android:exported="false" />
         <activity
-            android:name=".ui.activities.CameraActivity"
-            android:exported="true">
+            android:name=".ui.activities.BiometricActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.activities.LoginActivity"
+            android:exported="true"
+            android:theme="@style/SplashTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

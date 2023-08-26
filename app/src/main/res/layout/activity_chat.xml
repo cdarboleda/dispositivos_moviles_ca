@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.activities.ChatGPT">
+
+    <TextView
+        android:id="@+id/textoChat"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:background="@color/colorfondtexto"
+        android:fontFamily="@font/alata"
+        android:gravity="center"
+        android:text="ChatGPT"
+        android:textAlignment="center"
+        android:textColor="@color/white"
+        android:textSize="38dp" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recycler_view"
+        android:layout_width="match_parent"
+        android:layout_height="605dp"
+        android:layout_above="@id/bottom_layout"
+        android:layout_below="@+id/textoChat"
+        android:layout_marginTop="-1dp"
+        android:layout_marginBottom="0dp"
+        android:background="@color/grisoscuro" />
+
+    <TextView
+        android:id="@+id/welcome_text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:gravity="center"
+        android:text="Bienvenido a una extensión de ChatGPT"
+        android:textColor="@color/white"
+        android:textSize="32dp"></TextView>
+
+
+    <RelativeLayout
+        android:id="@+id/bottom_layout"
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:layout_alignParentBottom="true"
+        android:background="@color/colorfondtexto"
+        android:padding="8dp">
+
+        <EditText
+            android:id="@+id/message_edit_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:layout_toLeftOf="@id/send_btn"
+            android:background="@drawable/rounded_corner"
+            android:backgroundTint="@color/grisoscuro"
+            android:hint="Escribe aquí "
+            android:padding="16dp"
+            android:textColor="@color/white"
+            android:textColorHint="@color/white" />
+
+        <ImageButton
+            android:id="@+id/send_btn"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_alignParentEnd="true"
+            android:layout_centerInParent="true"
+            android:layout_marginStart="10dp"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:padding="8dp"
+
+            android:src="@drawable/ic_baseline_send_24" />
+
+
+    </RelativeLayout>
+
+
+</RelativeLayout>

@@ -1,20 +1,46 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="white2">#DCDCDC</color>
     <color name="purple">#8963CC</color>
 
+
     <color name="background_dm">#FFFFFF</color>
+    <color name="background_app">#2f519c</color>
+    <color name="background3_app">#4f8aff</color>
+    <color name="background2_app">#4f7eff</color>
+
+
     <color name="font_color_dm">#979fc5</color>
-    <color name="title_color_dm">#2b4049</color>
+    <color name="title_color_dm">#FFFFFF</color>
+
     <color name="principal_color_dm">#ff647a</color>
     <color name="button_color_dm">#ff647a</color>
     <color name="twitter_color_dm">#01a2f4</color>
     <color name="facebook_color_dm">#22599a</color>
 
     <color name="blue">#3f51b5</color>
+    <color name="blue2">#C5CAE9</color>
+    <color name="blue3">#90CAF9</color>
+    <color name="blue4">#64B5F6</color>
     <color name="red">#C53939</color>
+    <color name="red2">#F06292</color>
+    <color name="red3">#EC407A</color>
+    <color name="red4">#E91E63</color>
+    <color name="purple2">#BA68C8</color>
+    <color name="purple3">#AB47BC</color>
+    <color name="purple4">#9C27B0</color>
     <color name="orange">#E47926</color>
+    <color name="yellow">#F4E774</color>
     <color name="azulmarvel">#0535AF</color>
     <color name="redmarvel">#C60404</color>
+    <color name="black2">#1B1A1A</color>
+    <color name="black3">#333232</color>
+    <color name="trans">#54470E0E</color>
+    <color name="trans2">#54A7A7A7</color>
+    <color name="grisoscuro">#202123</color>
+    <color name="colorfondtexto">#40414F</color>
+
+    <color name="trans3">#0F4D92</color>
 </resources>

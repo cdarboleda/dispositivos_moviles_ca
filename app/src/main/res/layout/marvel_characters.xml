@@ -3,65 +3,65 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_marginEnd="10dp"
-
-    android:layout_marginBottom="10dp"
-    android:layout_height="200dp">
+    android:layout_height="200dp"
+    android:layout_marginBottom="10dp">
 
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        app:cardCornerRadius="12dp"
-
+        android:backgroundTint="@color/trans"
+        app:cardElevation="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
         <LinearLayout
-            android:orientation="vertical"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:weightSum="10"
-            android:background="@drawable/background_marvel">
+            android:orientation="vertical"
+            android:weightSum="10">
 
             <TextView
                 android:id="@+id/txtName"
                 android:layout_width="match_parent"
-                android:layout_weight="2"
                 android:layout_height="0dp"
-                android:fontFamily="@font/marvel2"
-                android:textSize="20dp"
-                android:text="Titulo"
                 android:layout_marginTop="5dp"
+                android:layout_weight="2"
+                android:fontFamily="@font/marvel2"
+                android:text="Titulo"
+                android:textAlignment="center"
                 android:textColor="@color/white"
-                android:textAlignment="center"/>
+                android:textSize="20dp" />
 
 
             <ImageView
                 android:id="@+id/imgImage"
-                android:layout_weight="6"
                 android:layout_width="match_parent"
-                android:scaleType="centerInside"
                 android:layout_height="0dp"
                 android:layout_marginStart="10dp"
-                android:layout_marginEnd="10dp"/>
+                android:layout_marginEnd="10dp"
+                android:layout_weight="6"
+                android:scaleType="centerInside" />
 
             <Button
-                android:id="@+id/btnSave"
+                android:id="@+id/btnDelete"
                 android:layout_width="wrap_content"
-                android:layout_gravity="center"
-                android:layout_weight="2"
                 android:layout_height="0dp"
+                android:layout_gravity="center"
                 android:layout_marginTop="5dp"
                 android:layout_marginBottom="5dp"
-                android:drawableLeft="@drawable/baseline_heart_broken_24"
+                android:backgroundTint="@color/white"
+                android:textColor="@color/red"
+                android:layout_weight="2"
+                android:drawableLeft="@drawable/baseline_favorite_24"
+                android:drawableTint="@color/red"
                 android:text="Agregar"
-                android:textSize="7dp" />
+                android:textSize="10dp" />
 
         </LinearLayout>
 
     </androidx.cardview.widget.CardView>
 
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

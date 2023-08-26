@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.dispositivosmoviles.R
 import com.example.dispositivosmoviles.logic.data.MarvelChars
 import com.example.dispositivosmoviles.databinding.MarvelCharactersBinding
+import com.google.android.material.snackbar.Snackbar
 import com.squareup.picasso.Picasso
 
 class MarvelAdapter(
@@ -29,13 +30,8 @@ class MarvelAdapter(
             //binding.txtComic.text = item.comic;
             Picasso.get().load(item.image).into(binding.imgImage)
 
-            itemView.setOnClickListener{
-                //Snackbar.make(binding.imgMarvel, item.name, Snackbar.LENGTH_SHORT).show()
-                fnClick(item)
-            }
-            binding.btnSave.setOnClickListener {
-                fnSave(item)
-            }
+            itemView.setOnClickListener{ fnClick(item) }
+            binding.btnDelete.setOnClickListener { fnSave(item) }
         }
 
 

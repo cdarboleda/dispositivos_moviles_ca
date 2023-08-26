@@ -2,8 +2,8 @@ package com.example.dispositivosmoviles.ui.activities
 
 import android.content.Intent
 import android.os.Bundle
-import androidx.appcompat.app.AppCompatActivity
 import com.example.dispositivosmoviles.databinding.ActivityResultBinding
+import androidx.appcompat.app.AppCompatActivity
 
 class ResultActivity : AppCompatActivity() {
 
@@ -22,6 +22,7 @@ class ResultActivity : AppCompatActivity() {
             val i = Intent()
             i.putExtra("result", "Resultado Exitoso")
             setResult(RESULT_OK, i)
+            //onDestroy()
             finish()
         }
 
@@ -29,6 +30,7 @@ class ResultActivity : AppCompatActivity() {
             val i = Intent()
             i.putExtra("result", "Resultado Fallido")
             setResult(RESULT_CANCELED, i)
+            //onDestroy()
             finish()
         }
 
