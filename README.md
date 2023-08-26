@@ -74,8 +74,8 @@ Dispositivos móviles repositorio Cristian Arboleda y Kevin Toapanta
 
 # Resultados
 
- ![welcome](demo/inicio_login.png) | ![menu](demo/menu_inicio.png) 
-
+ | ![welcome](demo/inicio_login.png) | ![menu](demo/menu_inicio.png) |
+ |----------|:-------------:|
 
 # Login
 - La primera pantalla es el inicio de sesión, el cual se realiza con Firebase Authentication y nos permite validar y crear usuarios de manera fácil y sencilla.
@@ -84,8 +84,8 @@ Dispositivos móviles repositorio Cristian Arboleda y Kevin Toapanta
 
 - Los datos ingresados se almacenarán como sesión en el dispositivo.
   
-![welcome](demo/Firebase_Usuarios.png) 
- ![player](demo/Login_Gestion.gif) 
+| ![welcome](demo/Firebase_Usuarios.png) | ![player](demo/Login_Gestion.gif) |
+ |----------|:-------------:|
 
 
 - También tenemos botones que nos llevan a diferentes redes sociales, como Twitter y Facebook.
@@ -124,9 +124,8 @@ Dispositivos móviles repositorio Cristian Arboleda y Kevin Toapanta
 - La primera vez obtendrá los datos del API y los almacenará en una base de datos local.
 
 
-![player](demo/MarvelAPI_Inicio.gif) 
-
-![player](demo/DB_Guardado.png)
+| ![player](demo/MarvelAPI_Inicio.gif) |![player](demo/DB_Guardado.png)|
+|----------|:-------------:|
 
 - Podremos agregar a los elementos como favoritos, realizar búsquedas por nombre y abrir una nueva pantalla con más información. 
 
@@ -139,10 +138,8 @@ Dispositivos móviles repositorio Cristian Arboleda y Kevin Toapanta
 - Los elementos agregados a favoritos se almacenarán en una tabla de la base de datos local.
 - Podremos eliminarlos de favoritos.
   
-![player](demo/MarvelAPI_Funcionalidad.gif) 
-
-![player](demo/DB_GuardadoFavoritos.png)
-
+| ![player](demo/MarvelAPI_Funcionalidad.gif) | ![player](demo/DB_GuardadoFavoritos.png)| 
+|----------|:-------------:|
 
 ## Jikan API
 
